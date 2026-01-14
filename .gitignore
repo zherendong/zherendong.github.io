@@ -12,3 +12,7 @@ node_modules/
 vendor
 .idea
 .venv
+
+# Local reference materials
+_local/
+avatar_transparent_bg.png
