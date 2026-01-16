@@ -1,6 +1,6 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
-// Toggle through light, dark, and system theme settings.
+// Toggle through light, dark, and system theme settings (kept for keyboard shortcut compatibility).
 let toggleThemeSetting = () => {
   let themeSetting = determineThemeSetting();
   if (themeSetting == "system") {
@@ -12,11 +12,26 @@ let toggleThemeSetting = () => {
   }
 };
 
+// Update the active state of theme dropdown options
+let updateThemeDropdownState = (themeSetting) => {
+  const themeOptions = document.querySelectorAll(".theme-option");
+  themeOptions.forEach((option) => {
+    if (option.dataset.theme === themeSetting) {
+      option.classList.add("active");
+    } else {
+      option.classList.remove("active");
+    }
+  });
+};
+
 // Change the theme setting and apply the theme.
 let setThemeSetting = (themeSetting) => {
   localStorage.setItem("theme", themeSetting);
 
   document.documentElement.setAttribute("data-theme-setting", themeSetting);
+
+  // Update dropdown active state
+  updateThemeDropdownState(themeSetting);
 
   applyTheme();
 };
@@ -282,13 +297,18 @@ let initTheme = () => {
 
   setThemeSetting(themeSetting);
 
-  // Add event listener to the theme toggle button.
+  // Add event listeners for theme dropdown options.
   document.addEventListener("DOMContentLoaded", function () {
-    const mode_toggle = document.getElementById("light-toggle");
-
-    mode_toggle.addEventListener("click", function () {
-      toggleThemeSetting();
+    const themeOptions = document.querySelectorAll(".theme-option");
+    themeOptions.forEach((option) => {
+      option.addEventListener("click", function () {
+        const selectedTheme = this.dataset.theme;
+        setThemeSetting(selectedTheme);
+      });
     });
+
+    // Initialize dropdown active state
+    updateThemeDropdownState(themeSetting);
   });
 
   // Add event listener to the system theme preference change.

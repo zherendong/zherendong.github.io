@@ -44,17 +44,16 @@
   --global-danger-block-text: #600;
   --global-danger-block-title: #c00;
 
-  #light-toggle-system {
-    padding-left: 10px;
-    padding-top: 12px;
-    display: block;
+  // Theme dropdown icon visibility (default: system)
+  #theme-icon-system {
+    display: inline-block;
   }
 
-  #light-toggle-dark {
+  #theme-icon-dark {
     display: none;
   }
 
-  #light-toggle-light {
+  #theme-icon-light {
     display: none;
   }
 
@@ -126,17 +125,15 @@ html[data-theme="dark"] {
 }
 
 html[data-theme-setting="dark"] {
-  #light-toggle-system {
+  #theme-icon-system {
     display: none;
   }
 
-  #light-toggle-dark {
-    padding-left: 10px;
-    padding-top: 12px;
-    display: block;
+  #theme-icon-dark {
+    display: inline-block;
   }
 
-  #light-toggle-light {
+  #theme-icon-light {
     display: none;
   }
 
@@ -147,17 +144,88 @@ html[data-theme-setting="dark"] {
 }
 
 html[data-theme-setting="light"] {
-  #light-toggle-system {
+  #theme-icon-system {
     display: none;
   }
 
-  #light-toggle-dark {
+  #theme-icon-dark {
     display: none;
   }
 
-  #light-toggle-light {
-    padding-left: 10px;
-    padding-top: 12px;
-    display: block;
+  #theme-icon-light {
+    display: inline-block;
+  }
+}
+
+// Theme dropdown styles
+.theme-dropdown {
+  .theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: var(--global-text-color);
+
+    &:hover {
+      color: var(--global-hover-color);
+    }
+
+    &::after {
+      display: none; // Hide default dropdown caret
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+  .theme-menu {
+    min-width: 140px;
+    padding: 0.5rem 0;
+    background-color: var(--global-bg-color);
+    border: 1px solid var(--global-divider-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    .theme-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      border: none;
+      background: none;
+      color: var(--global-text-color);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+
+      i {
+        font-size: 1rem;
+        width: 1.25rem;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: var(--global-divider-color);
+      }
+
+      &.active {
+        color: var(--global-theme-color);
+        font-weight: 500;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 3px;
+          height: 60%;
+          background-color: var(--global-theme-color);
+          border-radius: 0 2px 2px 0;
+        }
+      }
+    }
   }
 }

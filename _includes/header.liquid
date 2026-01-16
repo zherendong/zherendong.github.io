@@ -126,13 +126,34 @@
             </li>
           {% endif %}
           {% if site.enable_darkmode %}
-            <!-- Toogle theme mode -->
-            <li class="toggle-container">
-              <button id="light-toggle" title="Change theme">
-                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
-                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
-                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+            <!-- Theme mode dropdown -->
+            <li class="nav-item dropdown theme-dropdown">
+              <button
+                class="nav-link dropdown-toggle theme-toggle-btn"
+                id="theme-dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                title="Change theme"
+              >
+                <i class="ti ti-sun-moon" id="theme-icon-system"></i>
+                <i class="ti ti-moon-filled" id="theme-icon-dark"></i>
+                <i class="ti ti-sun-filled" id="theme-icon-light"></i>
               </button>
+              <div class="dropdown-menu dropdown-menu-right theme-menu" aria-labelledby="theme-dropdown-toggle">
+                <button class="dropdown-item theme-option" data-theme="system">
+                  <i class="ti ti-sun-moon"></i>
+                  <span>System</span>
+                </button>
+                <button class="dropdown-item theme-option" data-theme="light">
+                  <i class="ti ti-sun-filled"></i>
+                  <span>Light</span>
+                </button>
+                <button class="dropdown-item theme-option" data-theme="dark">
+                  <i class="ti ti-moon-filled"></i>
+                  <span>Dark</span>
+                </button>
+              </div>
             </li>
           {% endif %}
         </ul>
