@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://zherendong.github.io/sitemap.xml
+Sitemap: https://zherendong.pages.dev/sitemap.xml
