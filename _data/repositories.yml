@@ -1,14 +1,7 @@
-github_users:
-  - torvalds
-  - alshedivat
-
-repo_description_lines_max: 2
-
-github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+# Add your GitHub repositories here if you want to display them on the repositories page
+# Example:
+# github_users:
+#   - your_username
+#
+# github_repos:
+#   - your_username/your_repo
