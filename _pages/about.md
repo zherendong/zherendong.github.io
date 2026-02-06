@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: about_custom
 title: about
 permalink: /
 subtitle: Engineer
@@ -11,11 +11,11 @@ profile:
   more_info: >
     <p>Mountain View, CA</p>
 
-selected_papers: false
+selected_papers: true
 social: true
 
 announcements:
-  enabled: false
+  enabled: true
   scrollable: true
   limit: 5
 
@@ -26,24 +26,124 @@ latest_posts:
 ---
 
 <style>
-.post-header { margin-top: 5rem; }
-.post-header .desc { font-size: 1.5rem; }
-.post-description { font-size: 1.25rem; }
-.intro-content { margin-top: 3rem; }
-.profile { margin-top: -2rem; }
+/* Compact hero section styling */
+.post-header {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.post-header .post-title {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+}
+.post-header .desc {
+  font-size: 1.1rem;
+  color: var(--global-text-color-light);
+  margin-bottom: 0;
+}
+
+/* Profile adjustments - moved up to align with name */
+.profile {
+  margin-top: -3.5rem;
+  margin-left: 1.5rem;
+  width: 160px;
+}
+.profile img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+.profile .more-info {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Intro content */
+.intro-content {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* News and Publications sections */
+.news-section,
+.publications-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.news-section h2,
+.publications-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--global-text-color);
+}
+
+/* Social icons compact */
+.social {
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+.social .contact-icons {
+  font-size: 1.3rem;
+}
+.social .contact-icons a {
+  margin-right: 0.8rem;
+}
+
+/* Section styling */
+.cv {
+  margin-top: 1.5rem;
+}
+.cv .card {
+  margin-bottom: 1rem;
+}
+.cv .card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .profile {
+    width: 120px;
+    margin-left: 1rem;
+    margin-top: -2.5rem;
+  }
+  .profile img {
+    width: 120px;
+    height: 120px;
+  }
+  .post-header .post-title {
+    font-size: 1.8rem;
+  }
+}
 </style>
 
 <div class="intro-content" markdown="1">
 
-I'm a Member of Technical Staff on the AI Research Team at [Augment Code](https://www.augmentcode.com/), working on large language models for code understanding. Day-to-day, I build data curation pipelines, train embedding models, and work on infrastructure for LLM experimentation.
+I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs—particularly data curation strategies that improve embedding model performance in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
 
-Previously, I worked on vehicle platform software at [Applied Intuition](https://www.appliedintuition.com/) and Rust runtime libraries at [Rivos](https://www.rivosinc.com/).
-
-Originally from Jiaxing, Zhejiang, China.
+Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) and [Rivos](https://www.rivosinc.com/) (now part of Meta).
 
 </div>
 
 <div style="clear: both;"></div>
+
+<!-- News Section -->
+<div class="news-section">
+  <h2>
+    <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
+  </h2>
+  {% include news.liquid limit=true %}
+</div>
+
+<!-- Publications Section -->
+<div class="publications-section">
+  <h2>
+    <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
+  </h2>
+  {% include selected_papers.liquid %}
+</div>
 
 <div class="cv">
 
