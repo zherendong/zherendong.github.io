@@ -2,14 +2,13 @@
 layout: about_custom
 title: about
 permalink: /
-subtitle: Engineer
+subtitle:
 
 profile:
   align: right
   image: avatar.png
   image_circular: false
-  more_info: >
-    <p>Mountain View, CA</p>
+  more_info:
 
 selected_papers: true
 social: true
@@ -26,98 +25,467 @@ latest_posts:
 ---
 
 <style>
-/* Compact hero section styling */
+/* ============================================
+   EXPRESSIVE DESIGN SYSTEM
+   Primary: Blue (#2563EB)
+   Accent: Warm Coral (#F97316)
+   Background: Cream (#FAFAF8)
+   ============================================ */
+
+:root {
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
+  --color-accent: #F97316;
+  --color-accent-light: #FB923C;
+  --color-bg: #FAFAF8;
+  --color-bg-alt: #F0F4F8;
+  --color-text: #1E293B;
+  --color-text-light: #64748B;
+  --color-border: #E2E8F0;
+}
+
+/* Global Background */
+body {
+  background: linear-gradient(135deg, #FAFAF8 0%, #F0F4F8 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ============================================
+   HERO SECTION - Expressive & Bold
+   ============================================ */
 .post-header {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.post-header .post-title {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
 }
-.post-header .post-title {
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
-}
+
 .post-header .desc {
-  font-size: 1.1rem;
-  color: var(--global-text-color-light);
-  margin-bottom: 0;
+  display: none;
 }
 
-/* Profile adjustments - moved up to align with name */
+/* Profile/Avatar - Floating with shadow */
 .profile {
-  margin-top: -3.5rem;
-  margin-left: 1.5rem;
-  width: 160px;
+  margin-top: -2rem;
+  margin-left: 2rem;
+  width: 180px;
+  position: relative;
 }
+
+.profile::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
 .profile img {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.profile img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.2);
+}
+
 .profile .more-info {
-  font-size: 0.9rem;
-  text-align: center;
-  margin-top: 0.5rem;
+  display: none;
 }
 
-/* Intro content */
+/* ============================================
+   INTRO SECTION - Large & Readable
+   ============================================ */
 .intro-content {
-  margin-top: 1rem;
-  font-size: 1rem;
-  line-height: 1.6;
+  margin-top: 2rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  max-width: 700px;
 }
 
-/* News and Publications sections */
+.intro-content a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.intro-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.intro-content a:hover {
+  color: var(--color-accent);
+}
+
+.intro-content a:hover::after {
+  width: 100%;
+}
+
+/* Role badge */
+.role-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* ============================================
+   SECTION HEADERS - Expressive
+   ============================================ */
 .news-section,
 .publications-section {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .news-section h2,
-.publications-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--global-text-color);
+.publications-section h2,
+.cv h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-/* Social icons compact */
-.social {
-  margin-top: 0.8rem;
-  margin-bottom: 1rem;
+.news-section h2::before,
+.publications-section h2::before,
+.cv h3::before {
+  content: '';
+  width: 30px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
 }
-.social .contact-icons {
+
+.news-section h2 a,
+.publications-section h2 a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* ============================================
+   NEWS - Clean & Modern
+   ============================================ */
+.news table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+}
+
+.news th {
+  font-weight: 600;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  width: 120px;
+  vertical-align: top;
+  padding-top: 0.25rem;
+}
+
+.news td {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-left: 3px solid var(--color-accent);
+}
+
+.news a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.news a:hover {
+  color: var(--color-accent);
+}
+
+/* ============================================
+   PUBLICATIONS - Featured Spotlight
+   ============================================ */
+.publications-section {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  padding: 2rem;
+  border-radius: 20px;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.publications-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.publications .row {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.publications .row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+.publications .title {
   font-size: 1.3rem;
-}
-.social .contact-icons a {
-  margin-right: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
 }
 
-/* Section styling */
+.publications .author em {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.publications .periodical {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
+.publications .links .btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.publications .links .btn:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.publications .preview {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   CV SECTIONS - Clean Cards
+   ============================================ */
 .cv {
-  margin-top: 1.5rem;
-}
-.cv .card {
-  margin-bottom: 1rem;
-}
-.cv .card-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
+  margin-top: 3rem;
 }
 
-@media (max-width: 576px) {
-  .profile {
-    width: 120px;
-    margin-left: 1rem;
-    margin-top: -2.5rem;
-  }
-  .profile img {
-    width: 120px;
-    height: 120px;
-  }
+.cv .card {
+  background: white;
+  border: none;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.cv .card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.cv .card-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 1.25rem;
+}
+
+.cv .time-period {
+  font-weight: 600;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.cv .title {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.cv .company {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Skills */
+.skills-modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  padding: 1.25rem;
+  border-radius: 12px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: white;
+  color: var(--color-text);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.skill-tag.featured {
+  background: var(--color-primary);
+  color: white;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   SOCIAL LINKS - Floating Style
+   ============================================ */
+.social {
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.social .contact-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social .contact-icons a {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.social .contact-icons a:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.social .contact-note {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
   .post-header .post-title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+  }
+
+  .profile {
+    width: 140px;
+    margin-left: 1rem;
+    margin-top: -1rem;
+  }
+
+  .profile img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .publications-section {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1.5rem;
+  }
+
+  .skills-modern {
+    grid-template-columns: 1fr;
   }
 }
 </style>
+
+<!-- Role Badge -->
+<div class="role-badge">AI Research Engineer</div>
 
 <div class="intro-content" markdown="1">
 
@@ -132,7 +500,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 <!-- News Section -->
 <div class="news-section">
   <h2>
-    <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
+    <a href="{{ '/news/' | relative_url }}">News</a>
   </h2>
   {% include news.liquid limit=true %}
 </div>
@@ -140,7 +508,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 <!-- Publications Section -->
 <div class="publications-section">
   <h2>
-    <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
+    <a href="{{ '/publications/' | relative_url }}">Selected Publications</a>
   </h2>
   {% include selected_papers.liquid %}
 </div>
