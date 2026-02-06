@@ -20,10 +20,7 @@ ninja.data = [{
             window.location.href = "/blog/2015/formatting-and-links/";
           
         },
-      },{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
-          description: "",
-          section: "News",},{id: "news-new-preprint-on-spelling-bee-embeddings-for-language-modeling-is-now-on-arxiv",
+      },{id: "news-new-preprint-on-spelling-bee-embeddings-for-language-modeling-is-now-on-arxiv",
           title: 'New preprint on Spelling Bee Embeddings for Language Modeling is now on arXiv!...',
           description: "",
           section: "News",},{id: "projects-project-1",
