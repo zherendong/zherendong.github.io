@@ -471,6 +471,29 @@ footer, .social {
   display: none !important;
 }
 
+/* Fix header nav alignment */
+.navbar-nav {
+  align-items: center !important;
+}
+
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.theme-toggle-btn {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Dark mode specific adjustments */
 html[data-theme="dark"] .role-badge {
   background: rgba(15, 23, 42, 0.6);
