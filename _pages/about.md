@@ -42,6 +42,20 @@ latest_posts:
   --color-text-light: #64748b;
 }
 
+/* Dark Mode */
+html[data-theme="dark"] {
+  --glass-bg: rgba(30, 41, 59, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+
+  --color-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f172a 50%, #1e1b4b 75%, #0f172a 100%);
+  --color-primary: #60a5fa;
+  --color-accent: #818cf8;
+  --color-text: #f1f5f9;
+  --color-text-light: #94a3b8;
+}
+
 /* Animated gradient background */
 body {
   background: var(--color-bg);
@@ -468,6 +482,46 @@ footer, .social {
 /* Hide old social section since we moved it to hero */
 .social {
   display: none !important;
+}
+
+/* Dark mode specific adjustments */
+html[data-theme="dark"] .role-badge {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+html[data-theme="dark"] .glass-button {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .glass-button:hover {
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.25);
+}
+
+html[data-theme="dark"] .news td {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .skill-pill {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .skill-pill.featured {
+  background: rgba(96, 165, 250, 0.2);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] footer {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Footer - not fixed, only at bottom */
