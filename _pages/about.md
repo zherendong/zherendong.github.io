@@ -161,20 +161,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.role-badge::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #22c55e;
-  animation: pulse 2s infinite;
-}
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
 
 /* ============================================
    CONTACT BUTTONS - Hero Glass Buttons
@@ -486,9 +473,30 @@ footer, .social {
 
 /* Dark mode specific adjustments */
 html[data-theme="dark"] .role-badge {
-  background: rgba(96, 165, 250, 0.2);
+  background: rgba(96, 165, 250, 0.15);
   color: #60a5fa;
-  border-color: rgba(96, 165, 250, 0.3);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+html[data-theme="dark"] .publication-featured {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .publication-featured .title {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .publication-featured .author {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .publication-featured .venue {
+  color: #64748b;
+}
+
+html[data-theme="dark"] .publication-featured .abstract {
+  color: #cbd5e1;
 }
 
 html[data-theme="dark"] .glass-button {
