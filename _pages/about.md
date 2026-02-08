@@ -473,9 +473,10 @@ footer, .social {
 
 /* Dark mode specific adjustments */
 html[data-theme="dark"] .role-badge {
-  background: rgba(96, 165, 250, 0.15);
+  background: rgba(15, 23, 42, 0.6);
   color: #60a5fa;
-  border-color: rgba(96, 165, 250, 0.25);
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme="dark"] .publication-featured {
