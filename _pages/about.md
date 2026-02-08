@@ -511,22 +511,17 @@ footer, .social {
 
 <!-- HERO SECTION -->
 <div class="hero-glass">
-  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
-    <div style="flex: 1; min-width: 280px;">
+  <div style="display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start;">
+    <!-- LEFT: Avatar + Role + Contact (Vertical) -->
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; min-width: 160px;">
+      <!-- Avatar -->
+      <img src="assets/img/avatar.png" alt="Zheren Dong" style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 60px rgba(37, 99, 235, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 40px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3)';">
+
       <!-- Role Badge -->
       <div class="role-badge">AI Research Engineer</div>
 
-      <!-- Intro -->
-      <div class="intro-content" markdown="1">
-
-I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs—particularly data curation strategies that improve embedding model performance in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
-
-Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) and [Rivos](https://www.rivosinc.com/) (now part of Meta).
-
-</div>
-
-      <!-- Contact Buttons - Now in Hero -->
-      <div class="contact-hero">
+      <!-- Contact Buttons -->
+      <div style="display: flex; gap: 0.75rem;">
         <a href="mailto:zherend98@gmail.com" class="glass-button" title="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
@@ -539,11 +534,16 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       </div>
     </div>
 
-    <!-- Avatar -->
-    <div class="profile" style="flex-shrink: 0;">
-      <img src="assets/img/avatar.png" alt="Zheren Dong">
-    </div>
+    <!-- RIGHT: Intro Text -->
+    <div style="flex: 1; min-width: 280px;">
+      <div class="intro-content" markdown="1">
 
+I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs—particularly data curation strategies that improve embedding model performance in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
+
+Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) and [Rivos](https://www.rivosinc.com/) (now part of Meta).
+
+</div>
+    </div>
   </div>
 </div>
 
