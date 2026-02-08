@@ -11,8 +11,7 @@ contact_note: >
   Resume available upon request.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Building LLM training infrastructure and data systems for code understanding.
-footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+footer_text:
 keywords: LLM, large language models, machine learning, code understanding, ML infrastructure
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 💻 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -53,7 +52,7 @@ external_services:
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: true
+footer_fixed: false
 search_enabled: false
 socials_in_search: true
 posts_in_search: true

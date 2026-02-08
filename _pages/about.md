@@ -467,7 +467,19 @@ footer, .social {
 
 /* Hide old social section since we moved it to hero */
 .social {
-  display: none;
+  display: none !important;
+}
+
+/* Footer - not fixed, only at bottom */
+footer {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 2rem;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  bottom: auto;
 }
 
 /* ============================================
