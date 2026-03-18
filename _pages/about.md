@@ -70,6 +70,11 @@ body {
   max-width: 1020px;
 }
 
+/* Keep the homepage navbar aligned with the widened content boundary. */
+#navbar > .container {
+  max-width: 1020px;
+}
+
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
