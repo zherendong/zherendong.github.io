@@ -65,6 +65,11 @@ body {
   min-height: 100vh;
 }
 
+/* Give the about page glass sections a bit more horizontal room than the site default. */
+.container[role="main"] {
+  max-width: 1020px;
+}
+
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
