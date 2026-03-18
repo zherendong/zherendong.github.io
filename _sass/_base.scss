@@ -186,6 +186,25 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+.visitor-map-card {
+  .visitor-map-intro {
+    margin-bottom: 1rem;
+  }
+
+  .visitor-map-embed {
+    width: 100%;
+    min-height: 320px;
+    overflow-x: auto;
+  }
+
+  .visitor-map-embed iframe,
+  .visitor-map-embed canvas,
+  .visitor-map-embed img,
+  .visitor-map-embed svg {
+    max-width: 100%;
+  }
+}
+
 // Citation
 
 .citation,

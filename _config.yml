@@ -5,7 +5,7 @@
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Zheren
 middle_name:
-last_name: Dong (董哲仁)
+last_name: Dong
 email: zherend98@gmail.com
 contact_note: >
   Resume available upon request.
@@ -390,6 +390,13 @@ enable_google_analytics: false # enables google analytics
 enable_cronitor_analytics: false # enables cronitor RUM analytics
 enable_pirsch_analytics: false # enables Pirsch analytics (https://pirsch.io/)
 enable_openpanel_analytics: false # enables Openpanel analytics (https://openpanel.dev/)
+# PulseMaps visitor map widget
+pulsemaps:
+  enabled: false
+  # Paste the full official PulseMaps embed snippet below after creating a widget.
+  # embed_html: |
+  #   <div id="pulsemaps-widget"></div>
+  #   <script async src="https://pulsemaps.com/..."></script>
 enable_google_verification: false # enables google site verification
 enable_bing_verification: false # enables bing site verification
 enable_masonry: true # enables automatic project cards arrangement

@@ -636,7 +636,7 @@ footer {
     <div style="flex: 1; min-width: 280px;">
       <div class="intro-content" markdown="1">
 
-I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs—particularly data curation strategies that improve embedding model performance in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
+I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs and data curation strategies that improve retrieval performance for coding agents in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
 
 Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) and [Rivos](https://www.rivosinc.com/) (now part of Meta).
 
@@ -679,8 +679,8 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       <div class="title">Member of Technical Staff, AI Research Team</div>
       <div class="company">Augment Code</div>
       <ul>
-        <li>Training embedding models for retrieval-augmented generation (RAG)</li>
-        <li><a href="https://www.augmentcode.com/blog/image-support-in-chat">Inline image support</a> in Agent</li>
+        <li>Retrieval Perforamce and Context Engineering</li>
+        <li>Prev: <a href="https://www.augmentcode.com/blog/image-support-in-chat">Inline image support</a> in Agent</li>
       </ul>
     </div>
   </div>
@@ -691,7 +691,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       <div class="title">Software Engineer, Vehicle Platform Team</div>
       <div class="company">Applied Intuition</div>
       <ul>
-        <li>Next-gen Software Defined Vehicle (SDV) platform for Porsche</li>
+        <li>Next-gen Software Defined Vehicle (SDV) platform</li>
         <li>Data infrastructure for vehicle telemetry and fleet health monitoring</li>
         <li>On-board runtime environment and applications</li>
       </ul>
@@ -705,7 +705,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       <div class="company">Rivos Inc.</div>
       <ul>
         <li><a href="https://www.rivosinc.com/resources/blog/bootstrapping-risc-v-systems-introducing-rv-runtime-generator">Rust runtime support library</a> for RISC-V system bootstrapping</li>
-        <li>DDR5 SPD decoder/encoder CLI tool per JEDEC standard</li>
+        <li>Rust-based DDR5 SPD decoder/encoder CLI tool per JEDEC standard (intern project in summer 2022)</li>
       </ul>
     </div>
   </div>
@@ -716,7 +716,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       <div class="title">Software Engineer Intern</div>
       <div class="company">Alibaba Group</div>
       <ul>
-        <li>Redesigned TensorFlow-based user vector generation module in C++ for vector and tree-based deep match search system</li>
+        <li>Redesigned TensorFlow-based user vector generation module in C++ for vector and tree-based deep match retrieval system</li>
       </ul>
     </div>
   </div>
@@ -788,4 +788,19 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
     </div>
 
   </div>
+</div>
+
+{% if site.pulsemaps and site.pulsemaps.enabled and site.pulsemaps.embed_html %}
+<a class="anchor" id="visitor-map"></a>
+
+<div class="card mt-3 p-3 visitor-map-card">
+<h3 class="card-title font-weight-medium">Visitor Map</h3>
+<p class="card-text font-weight-light visitor-map-intro">
+Approximate visitor locations powered by PulseMaps.
+</p>
+<div class="visitor-map-embed">
+  {% include visitor_map.liquid %}
+</div>
+</div>
+{% endif %}
 </div>
