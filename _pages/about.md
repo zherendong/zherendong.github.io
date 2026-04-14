@@ -689,8 +689,9 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
       <div class="title">Member of Technical Staff, AI Research Team</div>
       <div class="company">Augment Code</div>
       <ul>
-        <li>Retrieval Performance and Context Engineering</li>
-        <li>Prev: <a href="https://www.augmentcode.com/blog/image-support-in-chat">Inline image support</a> in Agent</li>
+        <li>Retrieval performance and context engineering</li>
+        <li>Embedding model training and data curation</li>
+        <li>Model onboarding and evaluation</li>
       </ul>
     </div>
   </div>
