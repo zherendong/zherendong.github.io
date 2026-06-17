@@ -4,7 +4,7 @@ This file provides essential information for AI coding agents working on this pr
 
 ## Project Overview
 
-This is a **personal academic website** built with [Jekyll](https://jekyllrb.com/) using the [al-folio](https://github.com/alshedivat/al-folio) theme. It is a static site designed for academics and researchers to showcase their work, publications, projects, and blog posts.
+This is a **personal academic website** built with [Jekyll](https://jekyllrb.com/). The design and repository maintenance are customized for Zheren Dong's site.
 
 **Current site**: https://zherendong.pages.dev
 **Author**: Zheren Dong (董哲仁)
@@ -130,7 +130,7 @@ This is a **personal academic website** built with [Jekyll](https://jekyllrb.com
 └── .github/workflows/       # GitHub Actions workflows
     ├── deploy.yml           # Main deployment workflow
     ├── prettier.yml         # Code formatting check
-    ├── broken-links.yml     # Link checking
+    ├── broken-links-site.yml # Link checking after deploy
     └── ...
 ```
 
@@ -139,9 +139,8 @@ This is a **personal academic website** built with [Jekyll](https://jekyllrb.com
 ### Local Development with Docker (Recommended)
 
 ```bash
-# Pull and run the pre-built Docker image
-docker compose pull
-docker compose up
+# Build and run the local Docker image
+docker compose up --build
 
 # Site will be available at http://localhost:8080
 # Live reload is enabled - changes are reflected automatically
@@ -360,9 +359,5 @@ Configure in `_data/socials.yml` with various platform usernames.
 
 ## Useful Resources
 
-- [al-folio Documentation](https://github.com/alshedivat/al-folio)
 - [Jekyll Documentation](https://jekyllrb.com/docs/)
 - [Liquid Documentation](https://shopify.github.io/liquid/)
-- [FAQ](FAQ.md) - Common issues and solutions
-- [CUSTOMIZE.md](CUSTOMIZE.md) - Customization guide
-- [INSTALL.md](INSTALL.md) - Installation instructions
