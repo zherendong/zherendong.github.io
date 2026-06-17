@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "bundle install && bundle exec jekyll build"
+  },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "1.10.0",
     "prettier": "^3.7.4"
