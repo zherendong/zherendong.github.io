@@ -1,22 +1,13 @@
 name: Docker Image CI (Upload Tag)
 
 on:
-  push:
-    tags:
-      - "v*"
-    paths:
-      - ".github/workflows/deploy-docker-tag.yml"
-      - ".github/workflows/deploy-image.yml"
-      - "bin/entry_point.sh"
-      - "Dockerfile"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "package.json"
-      - "package-lock.json"
+  # Disabled: this personal site does not publish al-folio Docker images.
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'alshedivat'
 
     steps:
       - name: Checkout
