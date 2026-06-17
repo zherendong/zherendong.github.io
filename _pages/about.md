@@ -244,6 +244,7 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 1.5rem;
   margin: 1.5rem 0;
+  scroll-margin-top: 5rem;
 }
 
 .section-glass h2, .section-glass h3 {
@@ -615,6 +616,13 @@ footer {
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 575.98px) {
+  body.fixed-top-nav:has(#navbarNav.show) .container[role="main"],
+  body.fixed-top-nav:has(#navbarNav.collapsing) .container[role="main"] {
+    padding-top: 6rem;
+  }
+}
 </style>
 
 <!-- HERO SECTION -->
@@ -656,14 +664,14 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 </div>
 
 <!-- NEWS SECTION -->
-<div class="section-glass">
-  <h2><a href="{{ '/news/' | relative_url }}">News</a></h2>
+<div class="section-glass" id="news">
+  <h2>News</h2>
   {% include news.liquid limit=true %}
 </div>
 
 <!-- PUBLICATIONS SECTION -->
-<div class="section-glass">
-  <h2><a href="{{ '/publications/' | relative_url }}">Selected Publications</a></h2>
+<div class="section-glass" id="publications">
+  <h2>Selected Publications</h2>
 
   <div class="publication-featured">
     <img src="assets/img/publication_preview/beethinking.jpg" alt="Spelling Bee Embeddings" class="preview">
@@ -680,7 +688,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 </div>
 
 <!-- EXPERIENCE SECTION -->
-<div class="section-glass">
+<div class="section-glass" id="experience">
   <h3>Experience</h3>
 
   <div class="timeline-item">
@@ -734,7 +742,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 </div>
 
 <!-- EDUCATION SECTION -->
-<div class="section-glass">
+<div class="section-glass" id="education">
   <h3>Education</h3>
 
   <div class="timeline-item">
@@ -755,7 +763,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 </div>
 
 <!-- SKILLS SECTION -->
-<div class="section-glass">
+<div class="section-glass" id="skills">
   <h3>Skills</h3>
 
   <div style="display: grid; gap: 1rem;">
