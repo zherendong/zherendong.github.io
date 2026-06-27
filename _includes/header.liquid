@@ -133,7 +133,7 @@
             <!-- Search -->
             <li class="nav-item">
               <button id="search-toggle" title="Search" onclick="openSearchModal()">
-                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+                <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span>
               </button>
             </li>
           {% endif %}
@@ -146,23 +146,24 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                aria-label="Change theme"
                 title="Change theme"
               >
-                <i class="ti ti-sun-moon" id="theme-icon-system"></i>
-                <i class="ti ti-moon-filled" id="theme-icon-dark"></i>
-                <i class="ti ti-sun-filled" id="theme-icon-light"></i>
+                <i class="fa-solid fa-circle-half-stroke" id="theme-icon-system"></i>
+                <i class="fa-solid fa-moon" id="theme-icon-dark"></i>
+                <i class="fa-solid fa-sun" id="theme-icon-light"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-right theme-menu" aria-labelledby="theme-dropdown-toggle">
                 <button class="dropdown-item theme-option" data-theme="system">
-                  <i class="ti ti-sun-moon"></i>
+                  <i class="fa-solid fa-circle-half-stroke"></i>
                   <span>System</span>
                 </button>
                 <button class="dropdown-item theme-option" data-theme="light">
-                  <i class="ti ti-sun-filled"></i>
+                  <i class="fa-solid fa-sun"></i>
                   <span>Light</span>
                 </button>
                 <button class="dropdown-item theme-option" data-theme="dark">
-                  <i class="ti ti-moon-filled"></i>
+                  <i class="fa-solid fa-moon"></i>
                   <span>Dark</span>
                 </button>
               </div>

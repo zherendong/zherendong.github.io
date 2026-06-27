@@ -13,7 +13,14 @@
   crossorigin="anonymous"
 ></script>
 
-{% if site.enable_masonry %}
+{% assign masonry_enabled = site.enable_masonry %}
+{% if page.enable_masonry == false %}
+  {% assign masonry_enabled = false %}
+{% elsif page.enable_masonry == true %}
+  {% assign masonry_enabled = true %}
+{% endif %}
+
+{% if masonry_enabled %}
   <!-- Masonry & imagesLoaded -->
   <script
     defer
@@ -152,7 +159,14 @@
   <script src="{{ '/assets/js/tooltips-setup.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
-{% if site.enable_medium_zoom %}
+{% assign medium_zoom_enabled = site.enable_medium_zoom %}
+{% if page.enable_medium_zoom == false %}
+  {% assign medium_zoom_enabled = false %}
+{% elsif page.enable_medium_zoom == true %}
+  {% assign medium_zoom_enabled = true %}
+{% endif %}
+
+{% if medium_zoom_enabled %}
   <!-- Medium Zoom JS -->
   <script
     defer

@@ -6,7 +6,7 @@ subtitle:
 
 profile:
   align: right
-  image: avatar.png
+  image: avatar-320.png
   image_circular: false
   more_info:
 
@@ -14,6 +14,8 @@ selected_papers: true
 social: true
 enable_math: false
 publication_badges: false
+enable_masonry: false
+enable_medium_zoom: false
 
 announcements:
   enabled: true
@@ -709,20 +711,20 @@ footer {
     <!-- LEFT: Avatar + Role + Contact (Vertical) -->
     <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; min-width: 160px;">
       <!-- Avatar -->
-      <img src="assets/img/avatar.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="160" height="160">
+      <img src="assets/img/avatar-320.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="160" height="160">
 
       <!-- Role Badge -->
       <div class="role-badge">AI Research Engineer</div>
 
       <!-- Contact Buttons -->
       <div style="display: flex; gap: 0.75rem;">
-        <a href="mailto:zherend98@gmail.com" class="glass-button" title="Email">
+        <a href="mailto:zherend98@gmail.com" class="glass-button" title="Email" aria-label="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
-        <a href="https://github.com/zherendong" class="glass-button" title="GitHub">
+        <a href="https://github.com/zherendong" class="glass-button" title="GitHub" aria-label="GitHub">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://linkedin.com/in/zherendong" class="glass-button" title="LinkedIn">
+        <a href="https://linkedin.com/in/zherendong" class="glass-button" title="LinkedIn" aria-label="LinkedIn">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
       </div>
