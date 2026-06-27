@@ -56,13 +56,28 @@ html[data-theme="dark"] {
   --color-text-light: #94a3b8;
 }
 
-/* Animated gradient background */
+/* Animated gradient background.
+   The moving gradient lives on a fixed, oversized pseudo-element animated with
+   `transform` so it stays on the GPU compositor thread instead of repainting the
+   whole viewport every frame (which animating `background-position` would do). */
 body {
   background: var(--color-bg);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
   min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--color-bg);
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+  animation: gradientShift 30s ease-in-out infinite;
 }
 
 /* Give the about page glass sections a bit more horizontal room than the site default. */
@@ -76,9 +91,11 @@ body {
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(-10%, -8%, 0); }
+  50%  { transform: translate3d(-18%, 0, 0); }
+  75%  { transform: translate3d(-8%, -8%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* ============================================
@@ -144,6 +161,30 @@ body {
 }
 
 .profile img:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 20px 60px rgba(37, 99, 235, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Hero avatar: same look as .profile img, but driven by CSS (not inline JS) so it
+   honors prefers-reduced-motion and only transitions compositor-friendly props. */
+.hero-avatar {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 10px 40px rgba(37, 99, 235, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-avatar:hover {
   transform: scale(1.05);
   box-shadow:
     0 20px 60px rgba(37, 99, 235, 0.3),
@@ -592,9 +633,28 @@ footer {
     margin: 1rem auto;
   }
 
-  .profile img {
+  .profile img,
+  .hero-avatar {
     width: 120px;
     height: 120px;
+  }
+
+  /* Mobile GPUs are weakest at backdrop blur, which is re-sampled on every scroll
+     frame. Cut the radius hard and stop the background animation to save battery. */
+  .glass,
+  .hero-glass,
+  .section-glass,
+  .publication-featured,
+  .news td,
+  .glass-button,
+  .skill-pill,
+  footer {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  body::before {
+    animation: none;
   }
 
   .publication-featured {
@@ -623,6 +683,22 @@ footer {
     padding-top: 6rem;
   }
 }
+
+/* Respect the OS "reduce motion" setting: stop the looping background and neutralize
+   hover/scroll transforms and transitions. Also a performance win (no idle animation). */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
 </style>
 
 <!-- HERO SECTION -->
@@ -631,7 +707,7 @@ footer {
     <!-- LEFT: Avatar + Role + Contact (Vertical) -->
     <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; min-width: 160px;">
       <!-- Avatar -->
-      <img src="assets/img/avatar.png" alt="Zheren Dong" style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 60px rgba(37, 99, 235, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 40px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3)';">
+      <img src="assets/img/avatar.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="160" height="160">
 
       <!-- Role Badge -->
       <div class="role-badge">AI Research Engineer</div>
