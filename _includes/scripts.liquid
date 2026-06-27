@@ -188,14 +188,25 @@
 <script defer src="{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}"></script>
 
 <!-- Badges -->
-{% if site.enable_publication_badges.altmetric %}
+{% assign publication_badges_enabled = true %}
+{% if page.publication_badges == false %}
+  {% assign publication_badges_enabled = false %}
+{% endif %}
+{% if publication_badges_enabled and site.enable_publication_badges.altmetric %}
   <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 {% endif %}
-{% if site.enable_publication_badges.dimensions %}
+{% if publication_badges_enabled and site.enable_publication_badges.dimensions %}
   <script async src="https://badge.dimensions.ai/badge.js"></script>
 {% endif %}
 
-{% if site.enable_math %}
+{% assign math_enabled = site.enable_math %}
+{% if page.enable_math == false %}
+  {% assign math_enabled = false %}
+{% elsif page.enable_math == true %}
+  {% assign math_enabled = true %}
+{% endif %}
+
+{% if math_enabled %}
   <!-- MathJax -->
   <script
     defer

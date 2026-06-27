@@ -12,6 +12,8 @@ profile:
 
 selected_papers: true
 social: true
+enable_math: false
+publication_badges: false
 
 announcements:
   enabled: true
