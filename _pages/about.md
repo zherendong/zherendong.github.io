@@ -298,6 +298,18 @@ body::before {
   border-bottom-color: var(--color-primary);
 }
 
+/* Consistent keyboard focus that remains visible on translucent surfaces. */
+.glass-button:focus-visible,
+.publication-featured .btn-glass:focus-visible,
+.intro-content a:focus-visible,
+.news a:focus-visible,
+.timeline-content a:focus-visible,
+#navbar .nav-link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 /* ============================================
    SECTIONS - Glass Cards
    ============================================ */
@@ -488,6 +500,19 @@ body::before {
 /* ============================================
    SKILLS - Glass Pills
    ============================================ */
+.skills-groups {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill-group-title {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+}
+
 .skills-glass {
   display: flex;
   flex-wrap: wrap;
@@ -737,9 +762,53 @@ footer {
 }
 
 @media (max-width: 575.98px) {
+  .news table,
+  .news tbody,
+  .news tr,
+  .news th,
+  .news td {
+    display: block;
+    width: 100% !important;
+  }
+
+  .news table {
+    margin-bottom: 0;
+  }
+
+  .news tr + tr {
+    margin-top: 1rem;
+  }
+
+  .news th {
+    padding: 0 0.25rem 0.4rem;
+  }
+
+  .news td {
+    padding: 0.8rem 0.9rem;
+  }
+
   body.fixed-top-nav:has(#navbarNav.show) .container[role="main"],
   body.fixed-top-nav:has(#navbarNav.collapsing) .container[role="main"] {
     padding-top: 6rem;
+  }
+}
+
+/* Avoid sticky lift effects on touchscreens while retaining desktop feedback. */
+@media (hover: none) {
+  .profile img,
+  .hero-avatar,
+  .glass-button,
+  .publication-featured .btn-glass,
+  .skill-pill {
+    transition: none;
+  }
+
+  .profile img:hover,
+  .hero-avatar:hover,
+  .glass-button:hover,
+  .publication-featured .btn-glass:hover,
+  .skill-pill:hover {
+    transform: none;
   }
 }
 
@@ -901,9 +970,9 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 <div class="section-glass" id="skills">
   <h2>Skills</h2>
 
-  <div style="display: grid; gap: 1rem;">
+  <div class="skills-groups">
     <div>
-      <div style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-light); margin-bottom: 0.5rem;">Languages</div>
+      <h3 class="skill-group-title">Languages</h3>
       <div class="skills-glass">
         <span class="skill-pill featured">Python</span>
         <span class="skill-pill featured">C/C++</span>
@@ -916,7 +985,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
     </div>
 
     <div>
-      <div style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-light); margin-bottom: 0.5rem;">ML & Data</div>
+      <h3 class="skill-group-title">ML & Data</h3>
       <div class="skills-glass">
         <span class="skill-pill featured">PyTorch</span>
         <span class="skill-pill featured">TensorFlow</span>
@@ -927,7 +996,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
     </div>
 
     <div>
-      <div style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-light); margin-bottom: 0.5rem;">Infrastructure</div>
+      <h3 class="skill-group-title">Infrastructure</h3>
       <div class="skills-glass">
         <span class="skill-pill featured">Kubernetes</span>
         <span class="skill-pill featured">Docker</span>
