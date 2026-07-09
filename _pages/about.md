@@ -57,7 +57,7 @@ html[data-theme="dark"] {
   --color-primary: #60a5fa;
   --color-accent: #818cf8;
   --color-text: #f1f5f9;
-  --color-text-light: #94a3b8;
+  --color-text-light: #b6c2d2;
 }
 
 /* Animated gradient background.
@@ -213,10 +213,33 @@ body::before {
   font-size: 0.9rem;
   font-weight: 600;
   border: 1px solid rgba(37, 99, 235, 0.2);
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
+.hero-layout {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
 
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 160px;
+}
+
+.hero-contact {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 280px;
+}
 
 /* ============================================
    CONTACT BUTTONS - Hero Glass Buttons
@@ -292,16 +315,16 @@ body::before {
   scroll-margin-top: 5rem;
 }
 
-.section-glass h2, .section-glass h3 {
-  font-size: 0.75rem;
+.section-glass > h2 {
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   color: var(--color-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.section-glass h2 a, .section-glass h3 a {
+.section-glass > h2 a {
   color: var(--color-text-light);
   text-decoration: none;
 }
@@ -339,29 +362,13 @@ body::before {
 }
 
 /* ============================================
-   PUBLICATIONS - Featured Glass Card
+   PUBLICATION - Simple Summary
    ============================================ */
 .publication-featured {
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 10px 40px rgba(37, 99, 235, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  padding: 1.5rem;
+  padding: 0.25rem 0;
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
-  transition: all 0.3s;
-}
-
-.publication-featured:hover {
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow:
-    0 15px 50px rgba(37, 99, 235, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transform: translateY(-2px);
 }
 
 .publication-featured .preview {
@@ -381,6 +388,8 @@ body::before {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-text);
+  line-height: 1.35;
+  margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
@@ -558,11 +567,6 @@ html[data-theme="dark"] .role-badge {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-html[data-theme="dark"] .publication-featured {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 html[data-theme="dark"] .publication-featured .title {
   color: #f1f5f9;
 }
@@ -572,7 +576,7 @@ html[data-theme="dark"] .publication-featured .author {
 }
 
 html[data-theme="dark"] .publication-featured .venue {
-  color: #64748b;
+  color: var(--color-text-light);
 }
 
 html[data-theme="dark"] .publication-featured .abstract {
@@ -628,8 +632,58 @@ footer {
    RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
+  .post-header {
+    margin-top: 1rem;
+  }
+
   .post-header .post-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-glass {
+    padding: 1.25rem;
+    margin: 0.75rem 0 1rem;
+    border-radius: 20px;
+  }
+
+  .hero-layout {
+    gap: 1.25rem;
+  }
+
+  .hero-identity {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 1rem;
+    row-gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-avatar {
+    grid-row: 1 / span 2;
+  }
+
+  .hero-contact {
+    gap: 0.5rem;
+  }
+
+  .hero-copy {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .role-badge {
+    justify-self: start;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .glass-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
   }
 
   .profile {
@@ -639,8 +693,8 @@ footer {
 
   .profile img,
   .hero-avatar {
-    width: 120px;
-    height: 120px;
+    width: 96px;
+    height: 96px;
   }
 
   /* Mobile GPUs are weakest at backdrop blur, which is re-sampled on every scroll
@@ -663,12 +717,13 @@ footer {
 
   .publication-featured {
     flex-direction: column;
+    gap: 1rem;
   }
 
   .publication-featured .preview {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
+    width: 96px;
+    height: 96px;
+    align-self: center;
   }
 
   .timeline-date {
@@ -707,9 +762,9 @@ footer {
 
 <!-- HERO SECTION -->
 <div class="hero-glass">
-  <div style="display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start;">
+  <div class="hero-layout">
     <!-- LEFT: Avatar + Role + Contact (Vertical) -->
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; min-width: 160px;">
+    <div class="hero-identity">
       <!-- Avatar -->
       <img src="assets/img/avatar-320.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="160" height="160">
 
@@ -717,7 +772,7 @@ footer {
       <div class="role-badge">AI Research Engineer</div>
 
       <!-- Contact Buttons -->
-      <div style="display: flex; gap: 0.75rem;">
+      <div class="hero-contact">
         <a href="mailto:zherend98@gmail.com" class="glass-button" title="Email" aria-label="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
@@ -731,7 +786,7 @@ footer {
     </div>
 
     <!-- RIGHT: Intro Text -->
-    <div style="flex: 1; min-width: 280px;">
+    <div class="hero-copy">
       <div class="intro-content" markdown="1">
 
 I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs and data curation strategies that improve retrieval performance for coding agents in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
@@ -751,15 +806,15 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 
 <!-- PUBLICATIONS SECTION -->
 <div class="section-glass" id="publications">
-  <h2>Selected Publications</h2>
+  <h2>Publication</h2>
 
   <div class="publication-featured">
     <img src="assets/img/publication_preview/beethinking.jpg" alt="Spelling Bee Embeddings" class="preview">
     <div class="content">
-      <div class="title">Spelling Bee Embeddings for Language Modeling</div>
+      <h3 class="title">Spelling Bee Embeddings for Language Modeling</h3>
       <div class="author">Markus N Rabe, Judith Clymo, and <em>Zheren Dong</em></div>
       <div class="venue">arXiv preprint arXiv:2601.18030, Jan 2026</div>
-      <div class="abstract">We introduce a simple modification to the embedding layer. The key change is to infuse token embeddings with information about their spelling. Models trained with these embeddings improve not only on spelling, but also across standard benchmarks. We conduct scaling studies for models with 40M to 800M parameters, which suggest that the improvements are equivalent to needing about 8% less compute and data to achieve the same test loss.</div>
+      <div class="abstract">We add spelling information to token embeddings. Across models with 40M to 800M parameters, the approach improves spelling and standard benchmarks; scaling results suggest an equivalent of about 8% less compute and data for the same test loss.</div>
       <div class="buttons">
         <a href="https://arxiv.org/abs/2601.18030" class="btn-glass">arXiv</a>
       </div>
@@ -769,7 +824,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 
 <!-- EXPERIENCE SECTION -->
 <div class="section-glass" id="experience">
-  <h3>Experience</h3>
+  <h2>Experience</h2>
 
   <div class="timeline-item">
     <div class="timeline-date">Jan 2025 – Present<br><small>Palo Alto, CA</small></div>
@@ -823,7 +878,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 
 <!-- EDUCATION SECTION -->
 <div class="section-glass" id="education">
-  <h3>Education</h3>
+  <h2>Education</h2>
 
   <div class="timeline-item">
     <div class="timeline-date">2021 – 2022<br><small>Irvine, CA</small></div>
@@ -844,7 +899,7 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
 
 <!-- SKILLS SECTION -->
 <div class="section-glass" id="skills">
-  <h3>Skills</h3>
+  <h2>Skills</h2>
 
   <div style="display: grid; gap: 1rem;">
     <div>
