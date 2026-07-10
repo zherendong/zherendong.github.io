@@ -29,739 +29,601 @@ latest_posts:
 ---
 
 <style>
-/* ============================================
-   LIQUID GLASS DESIGN SYSTEM
-   ============================================ */
-
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-  --glass-highlight: rgba(255, 255, 255, 0.6);
-
-  --color-bg: linear-gradient(135deg, #e0e7ff 0%, #d1e0ff 25%, #e0e7ff 50%, #dbeafe 75%, #e0e7ff 100%);
-  --color-primary: #2563EB;
-  --color-accent: #3b82f6;
-  --color-text: #1e293b;
-  --color-text-light: #64748b;
+  --page-bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-subtle: #eef2f7;
+  --line: #dbe2ea;
+  --ink: #101828;
+  --muted: #596579;
+  --accent: #1d4ed8;
+  --accent-soft: rgba(29, 78, 216, 0.08);
+  --nav-bg: rgba(247, 248, 250, 0.96);
+  --card-shadow: 0 18px 50px rgba(16, 24, 40, 0.08);
 }
 
-/* Dark Mode */
 html[data-theme="dark"] {
-  --glass-bg: rgba(30, 41, 59, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --glass-highlight: rgba(255, 255, 255, 0.05);
-
-  --color-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f172a 50%, #1e1b4b 75%, #0f172a 100%);
-  --color-primary: #60a5fa;
-  --color-accent: #818cf8;
-  --color-text: #f1f5f9;
-  --color-text-light: #b6c2d2;
+  --page-bg: #0b0f16;
+  --surface: #121823;
+  --surface-subtle: #151d2a;
+  --line: #283447;
+  --ink: #edf2f7;
+  --muted: #a8b3c3;
+  --accent: #7db1ff;
+  --accent-soft: rgba(125, 177, 255, 0.1);
+  --nav-bg: rgba(11, 15, 22, 0.96);
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
 }
 
-/* Animated gradient background.
-   The moving gradient lives on a fixed, oversized pseudo-element animated with
-   `transform` so it stays on the GPU compositor thread instead of repainting the
-   whole viewport every frame (which animating `background-position` would do). */
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 body {
-  background: var(--color-bg);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
-  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: var(--color-bg);
-  z-index: -1;
-  pointer-events: none;
-  will-change: transform;
-  animation: gradientShift 30s ease-in-out infinite;
+  content: none;
 }
 
-/* Give the about page glass sections a bit more horizontal room than the site default. */
-.container[role="main"] {
-  max-width: 1020px;
-}
-
-/* Keep the homepage navbar aligned with the widened content boundary. */
+.container[role="main"],
 #navbar > .container {
-  max-width: 1020px;
+  max-width: 960px;
 }
 
-@keyframes gradientShift {
-  0%   { transform: translate3d(0, 0, 0); }
-  25%  { transform: translate3d(-10%, -8%, 0); }
-  50%  { transform: translate3d(-18%, 0, 0); }
-  75%  { transform: translate3d(-8%, -8%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+#navbar {
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
-/* ============================================
-   GLASS MORPHISM BASE
-   ============================================ */
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+#navbar .nav-link,
+#navbar .theme-toggle-btn,
+#navbar .navbar-toggler {
+  color: var(--muted);
 }
 
-/* ============================================
-   HERO SECTION - Floating Glass
-   ============================================ */
-.post-header {
-  margin-top: 2rem;
-  margin-bottom: 0;
+#navbar .nav-link {
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
 }
 
-.post-header .post-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+#navbar .nav-link:hover,
+#navbar .nav-link:focus-visible,
+#navbar .theme-toggle-btn:hover,
+#navbar .theme-toggle-btn:focus-visible {
+  color: var(--ink);
 }
 
-/* Glass container for hero content */
-.hero-glass {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  padding: 2rem;
-  margin: 1.5rem 0;
+#navbar .dropdown-menu {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: var(--card-shadow);
 }
 
-/* Avatar - Glass orb style */
-.profile {
-  margin-top: 0;
-  margin-left: 2rem;
-  width: 160px;
+#navbar .dropdown-item {
+  color: var(--muted);
 }
 
-.profile img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.6);
-  box-shadow:
-    0 10px 40px rgba(37, 99, 235, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.3),
-    inset 0 0 20px rgba(255, 255, 255, 0.3);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+#navbar .dropdown-item:hover,
+#navbar .dropdown-item:focus {
+  background: var(--accent-soft);
+  color: var(--ink);
 }
 
-.profile img:hover {
-  transform: scale(1.05);
-  box-shadow:
-    0 20px 60px rgba(37, 99, 235, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.4),
-    inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-/* Hero avatar: same look as .profile img, but driven by CSS (not inline JS) so it
-   honors prefers-reduced-motion and only transitions compositor-friendly props. */
-.hero-avatar {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.6);
-  box-shadow:
-    0 10px 40px rgba(37, 99, 235, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.3),
-    inset 0 0 20px rgba(255, 255, 255, 0.3);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hero-avatar:hover {
-  transform: scale(1.05);
-  box-shadow:
-    0 20px 60px rgba(37, 99, 235, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.4),
-    inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-.profile .more-info {
-  display: none;
-}
-
-/* Role badge - Glass pill */
-.role-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(37, 99, 235, 0.15);
-  backdrop-filter: blur(10px);
-  color: var(--color-primary);
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  margin-bottom: 0;
-}
-
-.hero-layout {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.hero-identity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  min-width: 160px;
-}
-
-.hero-contact {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.hero-copy {
-  flex: 1;
-  min-width: 280px;
-}
-
-/* ============================================
-   CONTACT BUTTONS - Hero Glass Buttons
-   ============================================ */
-.contact-hero {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.glass-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  color: var(--color-text);
-  font-size: 1.2rem;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-button:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: translateY(-3px);
-  box-shadow:
-    0 8px 24px rgba(37, 99, 235, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-/* ============================================
-   INTRO TEXT
-   ============================================ */
-.intro-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--color-text);
-}
-
-.intro-content a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(37, 99, 235, 0.3);
-  transition: all 0.2s;
-}
-
-.intro-content a:hover {
-  border-bottom-color: var(--color-primary);
-}
-
-/* Consistent keyboard focus that remains visible on translucent surfaces. */
-.glass-button:focus-visible,
-.publication-featured .btn-glass:focus-visible,
-.intro-content a:focus-visible,
-.news a:focus-visible,
-.timeline-content a:focus-visible,
-#navbar .nav-link:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* ============================================
-   SECTIONS - Glass Cards
-   ============================================ */
-.section-glass {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  scroll-margin-top: 5rem;
-}
-
-.section-glass > h2 {
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-text-light);
-  margin-bottom: 1.25rem;
-}
-
-.section-glass > h2 a {
-  color: var(--color-text-light);
-  text-decoration: none;
-}
-
-/* ============================================
-   NEWS
-   ============================================ */
-.news table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 0.5rem;
-}
-
-.news th {
-  font-weight: 600;
-  color: var(--color-text-light);
-  font-size: 0.85rem;
-  width: 100px;
-  vertical-align: top;
-  padding-top: 0.5rem;
-}
-
-.news td {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  padding: 0.875rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.news a {
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* ============================================
-   PUBLICATION - Simple Summary
-   ============================================ */
-.publication-featured {
-  padding: 0.25rem 0;
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-}
-
-.publication-featured .preview {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.publication-featured .content {
-  flex: 1;
-}
-
-.publication-featured .title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text);
-  line-height: 1.35;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.publication-featured .author {
-  color: var(--color-text-light);
-  margin-bottom: 0.25rem;
-}
-
-.publication-featured .author em {
-  color: var(--color-primary);
-  font-weight: 600;
-  font-style: normal;
-}
-
-.publication-featured .venue {
-  color: var(--color-text-light);
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-}
-
-.publication-featured .abstract {
-  color: var(--color-text);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.publication-featured .buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.publication-featured .btn-glass {
-  padding: 0.5rem 1rem;
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  border-radius: 10px;
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.publication-featured .btn-glass:hover {
-  background: rgba(37, 99, 235, 0.2);
-  transform: translateY(-1px);
-}
-
-/* ============================================
-   EXPERIENCE & EDUCATION - Timeline
-   ============================================ */
-.timeline-item {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.timeline-item:last-child {
-  border-bottom: none;
-}
-
-.timeline-date {
-  width: 120px;
-  flex-shrink: 0;
-  font-weight: 600;
-  color: var(--color-text-light);
-  font-size: 0.85rem;
-}
-
-.timeline-content .title {
-  font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: 0.25rem;
-}
-
-.timeline-content .company {
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-content ul {
-  margin: 0;
-  padding-left: 1.25rem;
-  color: var(--color-text);
-  font-size: 0.95rem;
-}
-
-.timeline-content li {
-  margin-bottom: 0.25rem;
-}
-
-/* ============================================
-   SKILLS - Glass Pills
-   ============================================ */
-.skills-groups {
-  display: grid;
-  gap: 1rem;
-}
-
-.skill-group-title {
-  color: var(--color-text-light);
-  font-size: 0.85rem;
-  font-weight: 700;
-  line-height: 1.4;
-  margin: 0 0 0.5rem;
-}
-
-.skills-glass {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skill-pill {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: all 0.2s;
-}
-
-.skill-pill.featured {
-  background: rgba(37, 99, 235, 0.15);
-  border-color: rgba(37, 99, 235, 0.25);
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
-.skill-pill:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-footer, .social {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  margin-top: 2rem;
-  padding: 1.5rem;
-  text-align: center;
-}
-
-/* Hide old social section since we moved it to hero */
-.social {
-  display: none !important;
-}
-
-/* Fix header nav alignment */
 .navbar-nav {
   align-items: center !important;
 }
 
-.navbar-nav .nav-item {
+.navbar-nav .nav-item,
+.navbar-nav .nav-link,
+.theme-toggle-btn {
   display: flex;
   align-items: center;
-}
-
-.navbar-nav .nav-link {
-  display: flex;
-  align-items: center;
-  line-height: 1;
 }
 
 .theme-toggle-btn {
-  padding: 0.5rem 0.75rem;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 0.5rem 0.75rem;
 }
 
-/* Dark mode specific adjustments */
-html[data-theme="dark"] .role-badge {
-  background: rgba(15, 23, 42, 0.6);
-  color: #60a5fa;
-  border-color: rgba(96, 165, 250, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+.post-header {
+  margin: 4.75rem 0 0;
 }
 
-html[data-theme="dark"] .publication-featured .title {
-  color: #f1f5f9;
+.post-header .post-title {
+  color: var(--ink);
+  font-size: clamp(3.7rem, 8vw, 5.25rem);
+  font-weight: 760;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin: 0;
+  text-shadow: none;
 }
 
-html[data-theme="dark"] .publication-featured .author {
-  color: #94a3b8;
+.hero-editorial {
+  padding: 2rem 0 4.5rem;
 }
 
-html[data-theme="dark"] .publication-featured .venue {
-  color: var(--color-text-light);
+.hero-heading {
+  align-items: center;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr) 132px;
 }
 
-html[data-theme="dark"] .publication-featured .abstract {
-  color: #cbd5e1;
+.role-line {
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  margin-bottom: 0.9rem;
+  text-transform: uppercase;
 }
 
-html[data-theme="dark"] .glass-button {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #f1f5f9;
+.hero-lead {
+  color: var(--ink);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 700px;
 }
 
-html[data-theme="dark"] .glass-button:hover {
-  background: rgba(30, 41, 59, 0.7);
-  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.25);
+.hero-avatar {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.1);
+  height: 124px;
+  object-fit: cover;
+  width: 124px;
 }
 
-html[data-theme="dark"] .news td {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
+html[data-theme="dark"] .hero-avatar {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
 }
 
-html[data-theme="dark"] .skill-pill {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
-}
-
-html[data-theme="dark"] .skill-pill.featured {
-  background: rgba(96, 165, 250, 0.2);
-  border-color: rgba(96, 165, 250, 0.3);
-  color: #60a5fa;
-}
-
-html[data-theme="dark"] footer {
-  background: rgba(15, 23, 42, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Footer - not fixed, only at bottom */
-footer {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+.intro-content {
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.75;
   margin-top: 2rem;
-  padding: 1.5rem;
-  text-align: center;
-  position: relative;
-  bottom: auto;
+  max-width: 760px;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+.intro-content p {
+  margin: 0 0 0.85rem;
+}
+
+.intro-content p:last-child {
+  margin-bottom: 0;
+}
+
+.intro-content a,
+.timeline-content a,
+.news a {
+  color: var(--accent);
+  font-weight: 620;
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.intro-content a:hover,
+.timeline-content a:hover,
+.news a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.contact-link {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 650;
+  gap: 0.45rem;
+  padding: 0.3rem 0;
+  text-decoration: none;
+}
+
+.contact-link i {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.contact-link:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+.contact-link:hover i {
+  color: var(--accent);
+}
+
+.section-glass {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--line);
+  box-shadow: none;
+  column-gap: 2.75rem;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  margin: 0;
+  padding: 3.75rem 0;
+  scroll-margin-top: 5rem;
+}
+
+.section-glass > h2 {
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  gap: 0.55rem;
+  grid-column: 1;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.section-index {
+  color: var(--accent);
+}
+
+.section-glass > :not(h2) {
+  grid-column: 2;
+}
+
+.news .table-responsive {
+  overflow: visible;
+}
+
+.news table {
+  border-collapse: collapse;
+  margin: 0;
+  width: 100%;
+}
+
+.news th,
+.news td {
+  border: 0;
+  padding-bottom: 0.9rem;
+  padding-top: 0.15rem;
+  vertical-align: top;
+}
+
+.news th {
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding-right: 1.75rem;
+  width: 140px !important;
+}
+
+.news td {
+  border-left: 2px solid var(--accent);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.65;
+  padding-left: 1.25rem;
+}
+
+.publication-featured {
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 112px minmax(0, 1fr);
+  padding: 1.5rem;
+}
+
+.publication-featured .preview {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  height: 112px;
+  object-fit: cover;
+  width: 112px;
+}
+
+.publication-featured .title,
+.timeline-content .title {
+  color: var(--ink);
+  font-weight: 720;
+  letter-spacing: -0.015em;
+}
+
+.publication-featured .title {
+  font-size: 1.32rem;
+  line-height: 1.35;
+  margin: 0 0 0.45rem;
+}
+
+.publication-featured .author,
+.publication-featured .venue {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.publication-featured .author {
+  margin-bottom: 0.15rem;
+}
+
+.publication-featured .author em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 650;
+}
+
+.publication-featured .venue {
+  font-size: 0.86rem;
+  margin-bottom: 0.8rem;
+}
+
+.publication-featured .abstract {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin-bottom: 0.9rem;
+}
+
+.publication-link {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.publication-link span {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.publication-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+.timeline-item {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 130px minmax(0, 1fr);
+  padding: 0 0 2rem;
+}
+
+.timeline-item + .timeline-item {
+  padding-top: 2rem;
+}
+
+.timeline-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline-date {
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.timeline-date small {
+  display: block;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 500;
+  margin-top: 0.35rem;
+}
+
+.timeline-content .title {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 0.25rem;
+}
+
+.timeline-content .company {
+  color: var(--accent);
+  font-size: 0.94rem;
+  font-weight: 650;
+  margin-bottom: 0.65rem;
+}
+
+.timeline-content ul {
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.timeline-content li + li {
+  margin-top: 0.2rem;
+}
+
+.skills-groups {
+  display: grid;
+}
+
+.skill-group {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 130px minmax(0, 1fr);
+  padding: 1rem 0;
+}
+
+.skill-group:first-child {
+  padding-top: 0;
+}
+
+.skill-group:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.skill-group-title {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.skill-list {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.visitor-map-content {
+  color: var(--muted);
+}
+
+.visitor-map-intro {
+  margin-bottom: 1rem;
+}
+
+footer {
+  background: transparent;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  padding: 2rem 0;
+}
+
+.social {
+  display: none !important;
+}
+
+.contact-link:focus-visible,
+.publication-link:focus-visible,
+.intro-content a:focus-visible,
+.news a:focus-visible,
+.timeline-content a:focus-visible,
+#navbar .nav-link:focus-visible,
+#navbar button:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 @media (max-width: 768px) {
   .post-header {
-    margin-top: 1rem;
+    margin-top: 3.25rem;
   }
 
   .post-header .post-title {
-    font-size: 2.25rem;
-    margin-bottom: 0.25rem;
+    font-size: clamp(3.15rem, 15vw, 4.25rem);
   }
 
-  .hero-glass {
-    padding: 1.25rem;
-    margin: 0.75rem 0 1rem;
-    border-radius: 20px;
+  .hero-editorial {
+    padding: 1.6rem 0 3.25rem;
   }
 
-  .hero-layout {
-    gap: 1.25rem;
-  }
-
-  .hero-identity {
-    display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 1rem;
-    row-gap: 0.75rem;
-    width: 100%;
-    min-width: 0;
+  .hero-heading {
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) 92px;
   }
 
   .hero-avatar {
-    grid-row: 1 / span 2;
+    height: 88px;
+    width: 88px;
   }
 
-  .hero-contact {
-    gap: 0.5rem;
+  .hero-lead {
+    font-size: clamp(1.25rem, 5.6vw, 1.55rem);
   }
 
-  .hero-copy {
-    width: 100%;
-    min-width: 0;
+  .intro-content {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 1.6rem;
   }
 
-  .role-badge {
-    justify-self: start;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.8rem;
+  .section-glass {
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2.75rem 0;
   }
 
-  .glass-button {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+  .section-glass > h2,
+  .section-glass > :not(h2) {
+    grid-column: 1;
   }
 
-  .profile {
-    width: 120px;
-    margin: 1rem auto;
+  .section-glass > h2 {
+    align-items: baseline;
+    flex-direction: row;
+    gap: 0.75rem;
   }
 
-  .profile img,
-  .hero-avatar {
-    width: 96px;
-    height: 96px;
+  .timeline-item,
+  .skill-group {
+    gap: 0.6rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Mobile GPUs are weakest at backdrop blur, which is re-sampled on every scroll
-     frame. Cut the radius hard and stop the background animation to save battery. */
-  .glass,
-  .hero-glass,
-  .section-glass,
-  .publication-featured,
-  .news td,
-  .glass-button,
-  .skill-pill,
-  footer {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  body::before {
-    animation: none;
-  }
-
-  .publication-featured {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .publication-featured .preview {
-    width: 96px;
-    height: 96px;
-    align-self: center;
-  }
-
-  .timeline-date {
-    width: auto;
-  }
-
-  .timeline-item {
-    flex-direction: column;
-    gap: 0.5rem;
+  .timeline-date small {
+    display: inline;
+    margin-left: 0.45rem;
   }
 }
 
 @media (max-width: 575.98px) {
+  .post-header .post-title {
+    font-size: clamp(2.85rem, 14.5vw, 3.6rem);
+  }
+
+  .hero-heading {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) 76px;
+  }
+
+  .hero-avatar {
+    height: 72px;
+    width: 72px;
+  }
+
+  .role-line {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-links {
+    gap: 0.8rem 1.1rem;
+  }
+
   .news table,
   .news tbody,
   .news tr,
@@ -776,15 +638,30 @@ footer {
   }
 
   .news tr + tr {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
 
   .news th {
-    padding: 0 0.25rem 0.4rem;
+    padding: 0 0 0.55rem;
   }
 
   .news td {
-    padding: 0.8rem 0.9rem;
+    padding: 0 0 0 1rem;
+  }
+
+  .publication-featured {
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.2rem;
+  }
+
+  .publication-featured .preview {
+    height: 88px;
+    width: 88px;
+  }
+
+  .publication-featured .title {
+    font-size: 1.18rem;
   }
 
   body.fixed-top-nav:has(#navbarNav.show) .container[role="main"],
@@ -793,112 +670,84 @@ footer {
   }
 }
 
-/* Avoid sticky lift effects on touchscreens while retaining desktop feedback. */
 @media (hover: none) {
-  .profile img,
-  .hero-avatar,
-  .glass-button,
-  .publication-featured .btn-glass,
-  .skill-pill {
+  .publication-link span {
     transition: none;
-  }
-
-  .profile img:hover,
-  .hero-avatar:hover,
-  .glass-button:hover,
-  .publication-featured .btn-glass:hover,
-  .skill-pill:hover {
-    transform: none;
   }
 }
 
-/* Respect the OS "reduce motion" setting: stop the looping background and neutralize
-   hover/scroll transforms and transitions. Also a performance win (no idle animation). */
 @media (prefers-reduced-motion: reduce) {
-  body::before {
-    animation: none;
-  }
-
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
   }
 }
 </style>
 
-<!-- HERO SECTION -->
-<div class="hero-glass">
-  <div class="hero-layout">
-    <!-- LEFT: Avatar + Role + Contact (Vertical) -->
-    <div class="hero-identity">
-      <!-- Avatar -->
-      <img src="assets/img/avatar-320.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="160" height="160">
-
-      <!-- Role Badge -->
-      <div class="role-badge">AI Research Engineer</div>
-
-      <!-- Contact Buttons -->
-      <div class="hero-contact">
-        <a href="mailto:zherend98@gmail.com" class="glass-button" title="Email" aria-label="Email">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-        <a href="https://github.com/zherendong" class="glass-button" title="GitHub" aria-label="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/zherendong" class="glass-button" title="LinkedIn" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-      </div>
+<section class="hero-editorial" aria-label="Introduction">
+  <div class="hero-heading">
+    <div>
+      <div class="role-line">AI Research Engineer</div>
+      <p class="hero-lead">Building LLM training, retrieval, and data systems for coding agents.</p>
     </div>
+    <img src="assets/img/avatar-320.png" alt="Zheren Dong" class="hero-avatar" loading="eager" width="124" height="124">
+  </div>
 
-    <!-- RIGHT: Intro Text -->
-    <div class="hero-copy">
-      <div class="intro-content" markdown="1">
+  <div class="intro-content" markdown="1">
 
-I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs and data curation strategies that improve retrieval performance for coding agents in production. This involves building pipelines to process real user data, handle distribution shifts, and maintain training data quality. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) on spelling-aware embeddings shows how simple architectural changes can improve language modeling across benchmarks.
+I'm a research engineer on the AI Research Team at [Augment Code](https://www.augmentcode.com/), where I focus on post-training LLMs and data curation strategies that improve retrieval performance for coding agents in production.
+
+My work includes training-data pipelines, distribution shifts, model onboarding, and evaluation. Outside of work, I pursue independent ML research; my [recent work](https://arxiv.org/abs/2601.18030) explores how spelling-aware embeddings can improve language modeling across benchmarks.
 
 Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) and [Rivos](https://www.rivosinc.com/) (now part of Meta).
 
-</div>
-    </div>
   </div>
-</div>
 
-<!-- NEWS SECTION -->
-<div class="section-glass" id="news">
-  <h2>News</h2>
+  <nav class="contact-links" aria-label="Profile links">
+    <a href="mailto:zherend98@gmail.com" class="contact-link">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <span>Email</span>
+    </a>
+    <a href="https://github.com/zherendong" class="contact-link">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <span>GitHub</span>
+    </a>
+    <a href="https://linkedin.com/in/zherendong" class="contact-link">
+      <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+      <span>LinkedIn</span>
+    </a>
+  </nav>
+</section>
+
+<section class="section-glass" id="news" aria-labelledby="news-heading">
+  <h2 id="news-heading"><span class="section-index" aria-hidden="true">01</span>News</h2>
   {% include news.liquid limit=true %}
-</div>
+</section>
 
-<!-- PUBLICATIONS SECTION -->
-<div class="section-glass" id="publications">
-  <h2>Publication</h2>
+<section class="section-glass" id="publications" aria-labelledby="publication-heading">
+  <h2 id="publication-heading"><span class="section-index" aria-hidden="true">02</span>Publication</h2>
 
-  <div class="publication-featured">
-    <img src="assets/img/publication_preview/beethinking.jpg" alt="Spelling Bee Embeddings" class="preview">
+  <article class="publication-featured">
+    <img src="assets/img/publication_preview/beethinking.jpg" alt="Illustration for Spelling Bee Embeddings" class="preview">
     <div class="content">
       <h3 class="title">Spelling Bee Embeddings for Language Modeling</h3>
       <div class="author">Markus N Rabe, Judith Clymo, and <em>Zheren Dong</em></div>
       <div class="venue">arXiv preprint arXiv:2601.18030, Jan 2026</div>
       <div class="abstract">We add spelling information to token embeddings. Across models with 40M to 800M parameters, the approach improves spelling and standard benchmarks; scaling results suggest an equivalent of about 8% less compute and data for the same test loss.</div>
-      <div class="buttons">
-        <a href="https://arxiv.org/abs/2601.18030" class="btn-glass">arXiv</a>
-      </div>
+      <a href="https://arxiv.org/abs/2601.18030" class="publication-link">Read on arXiv <span aria-hidden="true">↗</span></a>
     </div>
-  </div>
-</div>
+  </article>
+</section>
 
-<!-- EXPERIENCE SECTION -->
-<div class="section-glass" id="experience">
-  <h2>Experience</h2>
+<section class="section-glass" id="experience" aria-labelledby="experience-heading">
+  <h2 id="experience-heading"><span class="section-index" aria-hidden="true">03</span>Experience</h2>
 
-  <div class="timeline-item">
-    <div class="timeline-date">Jan 2025 – Present<br><small>Palo Alto, CA</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">Jan 2025 – Present<small>Palo Alto, CA</small></div>
     <div class="timeline-content">
-      <div class="title">Member of Technical Staff, AI Research Team</div>
+      <h3 class="title">Member of Technical Staff, AI Research Team</h3>
       <div class="company">Augment Code</div>
       <ul>
         <li>Retrieval performance and context engineering</li>
@@ -906,12 +755,12 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
         <li>Model onboarding and evaluation</li>
       </ul>
     </div>
-  </div>
+  </article>
 
-  <div class="timeline-item">
-    <div class="timeline-date">Sep 2023 – Jan 2025<br><small>Mountain View, CA</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">Sep 2023 – Jan 2025<small>Mountain View, CA</small></div>
     <div class="timeline-content">
-      <div class="title">Software Engineer, Vehicle Platform Team</div>
+      <h3 class="title">Software Engineer, Vehicle Platform Team</h3>
       <div class="company">Applied Intuition</div>
       <ul>
         <li>Next-gen Software Defined Vehicle (SDV) platform</li>
@@ -919,110 +768,83 @@ Previously, I worked at [Applied Intuition](https://www.appliedintuition.com/) a
         <li>On-board runtime environment and applications</li>
       </ul>
     </div>
-  </div>
+  </article>
 
-  <div class="timeline-item">
-    <div class="timeline-date">Jun 2022 – Aug 2023<br><small>Mountain View, CA</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">Jun 2022 – Aug 2023<small>Mountain View, CA</small></div>
     <div class="timeline-content">
-      <div class="title">Member of Technical Staff</div>
+      <h3 class="title">Member of Technical Staff</h3>
       <div class="company">Rivos Inc.</div>
       <ul>
         <li><a href="https://www.rivosinc.com/resources/blog/bootstrapping-risc-v-systems-introducing-rv-runtime-generator">Rust runtime support library</a> for RISC-V system bootstrapping</li>
         <li>Rust-based DDR5 SPD decoder/encoder CLI tool per JEDEC standard (intern project in summer 2022)</li>
       </ul>
     </div>
-  </div>
+  </article>
 
-  <div class="timeline-item">
-    <div class="timeline-date">May 2021 – Sep 2021<br><small>Beijing, China</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">May 2021 – Sep 2021<small>Beijing, China</small></div>
     <div class="timeline-content">
-      <div class="title">Software Engineer Intern</div>
+      <h3 class="title">Software Engineer Intern</h3>
       <div class="company">Alibaba Group</div>
       <ul>
         <li>Redesigned TensorFlow-based user vector generation module in C++ for vector and tree-based deep match retrieval system</li>
       </ul>
     </div>
-  </div>
-</div>
+  </article>
+</section>
 
-<!-- EDUCATION SECTION -->
-<div class="section-glass" id="education">
-  <h2>Education</h2>
+<section class="section-glass" id="education" aria-labelledby="education-heading">
+  <h2 id="education-heading"><span class="section-index" aria-hidden="true">04</span>Education</h2>
 
-  <div class="timeline-item">
-    <div class="timeline-date">2021 – 2022<br><small>Irvine, CA</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">2021 – 2022<small>Irvine, CA</small></div>
     <div class="timeline-content">
-      <div class="title">M.S. Computer Science</div>
+      <h3 class="title">M.S. Computer Science</h3>
       <div class="company">University of California, Irvine</div>
     </div>
-  </div>
+  </article>
 
-  <div class="timeline-item">
-    <div class="timeline-date">2016 – 2020<br><small>Santa Barbara, CA</small></div>
+  <article class="timeline-item">
+    <div class="timeline-date">2016 – 2020<small>Santa Barbara, CA</small></div>
     <div class="timeline-content">
-      <div class="title">B.S. Computer Science (Honors)</div>
+      <h3 class="title">B.S. Computer Science (Honors)</h3>
       <div class="company">University of California, Santa Barbara</div>
     </div>
-  </div>
-</div>
+  </article>
+</section>
 
-<!-- SKILLS SECTION -->
-<div class="section-glass" id="skills">
-  <h2>Skills</h2>
+<section class="section-glass" id="skills" aria-labelledby="skills-heading">
+  <h2 id="skills-heading"><span class="section-index" aria-hidden="true">05</span>Skills</h2>
 
   <div class="skills-groups">
-    <div>
+    <div class="skill-group">
       <h3 class="skill-group-title">Languages</h3>
-      <div class="skills-glass">
-        <span class="skill-pill featured">Python</span>
-        <span class="skill-pill featured">C/C++</span>
-        <span class="skill-pill featured">Rust</span>
-        <span class="skill-pill">Go</span>
-        <span class="skill-pill">Java</span>
-        <span class="skill-pill">TypeScript</span>
-        <span class="skill-pill">SQL</span>
-      </div>
+      <p class="skill-list">Python · C/C++ · Rust · Go · Java · TypeScript · SQL</p>
     </div>
 
-    <div>
+    <div class="skill-group">
       <h3 class="skill-group-title">ML & Data</h3>
-      <div class="skills-glass">
-        <span class="skill-pill featured">PyTorch</span>
-        <span class="skill-pill featured">TensorFlow</span>
-        <span class="skill-pill featured">Ray</span>
-        <span class="skill-pill">Spark</span>
-        <span class="skill-pill">CUDA</span>
-      </div>
+      <p class="skill-list">PyTorch · TensorFlow · Ray · Spark · CUDA</p>
     </div>
 
-    <div>
+    <div class="skill-group">
       <h3 class="skill-group-title">Infrastructure</h3>
-      <div class="skills-glass">
-        <span class="skill-pill featured">Kubernetes</span>
-        <span class="skill-pill featured">Docker</span>
-        <span class="skill-pill featured">GCP</span>
-        <span class="skill-pill">AWS</span>
-        <span class="skill-pill">BigTable</span>
-        <span class="skill-pill">BigQuery</span>
-        <span class="skill-pill">Kafka</span>
-        <span class="skill-pill">Redis</span>
-        <span class="skill-pill">PostgreSQL</span>
-      </div>
+      <p class="skill-list">Kubernetes · Docker · GCP · AWS · BigTable · BigQuery · Kafka · Redis · PostgreSQL</p>
     </div>
 
   </div>
-</div>
+</section>
 
 {% if site.pulsemaps and site.pulsemaps.enabled and site.pulsemaps.embed_html %}
-<a class="anchor" id="visitor-map"></a>
 
-<div class="card mt-3 p-3 visitor-map-card">
-<h3 class="card-title font-weight-medium">Visitor Map</h3>
-<p class="card-text font-weight-light visitor-map-intro">
-Approximate visitor locations powered by PulseMaps.
-</p>
-<div class="visitor-map-embed">
-  {% include visitor_map.liquid %}
-</div>
-</div>
+<section class="section-glass visitor-map-card" id="visitor-map" aria-labelledby="visitor-map-heading">
+  <h2 id="visitor-map-heading"><span class="section-index" aria-hidden="true">06</span>Visitor Map</h2>
+  <div class="visitor-map-content">
+    <p class="visitor-map-intro">Approximate visitor locations powered by PulseMaps.</p>
+    <div class="visitor-map-embed">
+      {% include visitor_map.liquid %}
+    </div>
+  </div>
+</section>
 {% endif %}
